@@ -34,7 +34,7 @@
   "bugs": "https://github.com/loba-b/react-equal-height/issues",
   "homepage": "https://github.com/loba-b/react-equal-height#readme",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/loba-b"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
