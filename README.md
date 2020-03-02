@@ -2,16 +2,16 @@
 Comparing elements on react state and hooks by name and set max height.
 
 Import components
-```jsx
+```tsx
 import { EqualHeight, EqualHeightElement } from 'react-equal-height';
 ```
 **EqualHeight** - parent component (all components to calculate must be included in this component)
 
 **EqualHeightElement** - child component to wrap element for height
 
-##Example
+### Example
 Simplest example
-```jsx
+```tsx jsx
 <EqualHeight>
     <EqualHeightElement name="Simple">
         <p>
@@ -28,3 +28,8 @@ Simplest example
     </EqualHeightElement>
 </EqualHeight>
 ```
+
+Options for EqualHeightElement
+* **placeholder** (default: false)
+* **disable** (default: false)
+* **overflow** (default: true)
