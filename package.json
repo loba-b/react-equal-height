@@ -4,11 +4,15 @@
   "description": "Set equal height for components",
   "main": "dist/index.js",
   "types": "dist/lib/index.d.ts",
-  "files": ["dist/**/*"],
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "start": "webpack-dev-server --port 8889 --config webpack.config.js",
-    "watch": "webpack --config webpack.config.js --watch"
+    "watch": "webpack --config webpack.config.js --watch",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
@@ -29,6 +33,9 @@
   "license": "MIT",
   "bugs": "https://github.com/loba-b/react-equal-height/issues",
   "homepage": "https://github.com/loba-b/react-equal-height#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
