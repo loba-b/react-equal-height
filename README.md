@@ -36,3 +36,7 @@ import { EqualHeight, EqualHeightElement } from 'react-equal-height';
 | ```placeholder```       | **false**     | when you need equal height but there is no any element    |
 | ```disable```           | **false**     | to disable ```EqualHeightElement``` (children is still passing) |
 | ```overflow```          | **true**      | adding overflow: hidden on element                        |
+
+## TO-DO
+* add examples
+* better README.md
