@@ -1,6 +1,6 @@
 {
   "name": "react-equal-height",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Set equal height for components",
   "main": "dist/index.js",
   "types": "dist/lib/index.d.ts",
