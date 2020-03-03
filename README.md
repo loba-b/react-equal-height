@@ -1,17 +1,15 @@
-# react-equal-height
+# React Equal Height
 Comparing elements on react state and hooks by name and set max height.
 
-Import components
-```tsx
-import { EqualHeight, EqualHeightElement } from 'react-equal-height';
+## Installation
 ```
-**EqualHeight** - parent component (all components to calculate must be included in this component)
+npm i react-equal-height
+```
 
-**EqualHeightElement** - child component to wrap element for height
-
-### Example
-Simplest example
+## Usage
 ```tsx jsx
+import { EqualHeight, EqualHeightElement } from 'react-equal-height';
+
 <EqualHeight>
     <EqualHeightElement name="Simple">
         <p>
@@ -28,8 +26,13 @@ Simplest example
     </EqualHeightElement>
 </EqualHeight>
 ```
+**EqualHeight** - parent component (all components to calculate must be included in this component)
 
-Options for EqualHeightElement
-* **placeholder** (default: false)
-* **disable** (default: false)
-* **overflow** (default: true)
+**EqualHeightElement** - child component to wrap element for height
+
+## Options
+| Prop              | Default   | Description                                               |
+| ----------------- |:-------:  | :-------------------------------------------------------- |
+| ```placeholder```       | **false**     | when you need equal height but there is no any element    |
+| ```disable```           | **false**     | to disable ```EqualHeightElement``` (children is still passing) |
+| ```overflow```          | **true**      | adding overflow: hidden on element                        |
