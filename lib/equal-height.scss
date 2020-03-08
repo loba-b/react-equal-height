@@ -1,17 +1,5 @@
-.holder {
-    display: block;
-}
-
-.overflow {
+.wrapper {
     overflow: hidden;
-}
-
-.inner {
-    display: inline-block;
-    width: 100%;
-}
-
-.animate {
-    height: auto;
-    transition: min-height 0.25s;
+    transition-property: height;
+    display: block;
 }

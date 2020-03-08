@@ -41,11 +41,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                exclude: [
-                    path.resolve(__dirname, '../node_modules'),
-                    path.resolve(__dirname, '../webapp/components'),
-                    path.resolve(__dirname, '../webapp/views')
-                ],
+                exclude: /node_modules/,
                 use: [
                     'style-loader',
                     {

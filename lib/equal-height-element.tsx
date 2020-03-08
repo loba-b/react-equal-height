@@ -6,109 +6,109 @@ import React, {
 } from 'react';
 
 import { EqualHeightContext } from './equal-height-context';
-import { SizesProps } from './equal-height';
 
 import styles from './equal-height.scss';
 
 interface Props {
     children?: React.ReactNode;
     name: string;
+    tag?: string;
     placeholder?: boolean;
     disable?: boolean;
-    overflow?: boolean;
 }
 
 export default function EqualHeightElement(props: Props) {
     const {
         children = '',
         name,
+        tag = 'div',
         placeholder = false,
-        disable = false,
-        overflow = true
+        disable = false
     } = props;
 
     const {
         sizes,
-        setSizes,
-        animate
+        update,
+        setTemporarySizes,
+        setOriginalChildrenCount,
+        setChildrenCount,
+        animationSpeed
     } = useContext(EqualHeightContext);
 
     // States
-    const [height, setHeight] = useState<number>(0);
+    const [height, setHeight] = useState<number>();
 
-    // Refs
+    // Refs to wrapper element
     const innerElement = useRef<HTMLDivElement>(null);
 
-    useEffect((): void => {
-        // If array or dispatch of sizes or are empty then stop
-        if (!sizes || !setSizes) {return;}
+    // Calculate method
+    const getHeight = () => {
+        if (!innerElement.current || disable) {return;}
+        const tempHeight: string = innerElement.current.style.getPropertyValue('height');
+        innerElement.current.style.removeProperty('height');
+        const newHeight: number = innerElement.current.offsetHeight;
+        innerElement.current.style.setProperty('height', tempHeight);
+        setTemporarySizes(values => {
+            return [...values, {
+                name,
+                height: newHeight
+            }]
+        });
 
-        // Get element from sizes array
+        if (!disable) {
+            setChildrenCount(value => value + 1);
+        }
+    };
+
+    // Init
+    useEffect(() => {
+        if (disable) {return;}
+
+        // Report self to parent component (to calculate how many components exist)
+        setOriginalChildrenCount(value => value + 1);
+        return () => {
+            setOriginalChildrenCount(value => value - 1);
+        };
+    }, [disable, placeholder]);
+
+    // Call calculate method
+    useEffect((): void => {
+        if (disable) {return;}
+
+        getHeight();
+    }, [update, disable, placeholder]);
+
+    // Set sizes on elements in DOM
+    useEffect((): void => {
+        if (disable) {return;}
+
         const elementIndex: number = sizes.findIndex((e) => e.name === name);
 
-        // If element not exist then stop
-        if (!innerElement.current) return;
-
-        // Get real element height
-        const elementHeight: number = innerElement.current.clientHeight;
-
-        if (elementIndex > -1) {
-
-            // Get saved height for element
-            const savedHeight: number = sizes[elementIndex].height;
-
-            // Compare saved height and real height
-            if (savedHeight < elementHeight) {
-                const newSizes: SizesProps[] = [...sizes];
-                newSizes[elementIndex].height = elementHeight;
-                setSizes(newSizes);
-            }
-        } else {
-            setSizes(sizes => {
-                return [...sizes, {
-                    name,
-                    height: elementHeight
-                }]
-            });
-        }
-    }, [sizes, disable]);
-
-    // Set height on local element
-    useEffect((): void => {
-        // If sizes are empty then stop
-        if (!sizes) {return;}
-        // Get element from sizes array
-        const elementIndex: number = sizes.findIndex(e => e.name === name);
-        if (sizes[elementIndex] && sizes[elementIndex].height) {
+        if (sizes && sizes[elementIndex] && sizes[elementIndex].height) {
             setHeight(sizes[elementIndex].height);
         }
-    }, [sizes, disable]);
+    }, [sizes]);
 
-    // Inline styles for equal-element
-    const inlineStyles: React.CSSProperties = {};
+    // Styles for wrapper element
+    const inlineStyles: React.CSSProperties = {
+        height: `${height}px`,
+        transitionDuration: animationSpeed === 0 ? '' : `${animationSpeed}s`
+    };
 
-    // If equal-element is not disable calculate his height
-    if (!disable) {
-        // Choose right style property to set height
-        if (animate) {
-            inlineStyles.minHeight = `${height}px`;
-        } else {
-            inlineStyles.height = `${height}px`;
-        }
+    if (!placeholder && !children) {
+        return null;
     }
-
-    const classes: string = `${styles.holder} ${animate ? styles.animate : ''} ${overflow ? styles.overflow : ''}`;
 
     return (
         <>
             {disable ? (
                 children
             ) : (
-                <div style={inlineStyles} className={classes}>
-                    <div ref={innerElement} className={styles.inner}>
-                        {!placeholder && children}
-                    </div>
-                </div>
+                React.createElement(tag, {
+                    ref: innerElement,
+                    className: styles.wrapper,
+                    style: inlineStyles
+                }, !placeholder && children)
             )}
         </>
     );
