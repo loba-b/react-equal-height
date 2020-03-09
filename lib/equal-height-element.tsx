@@ -2,7 +2,9 @@ import React, {
     useEffect,
     useRef,
     useState,
-    useContext
+    useContext,
+    useMemo,
+    memo
 } from 'react';
 
 import { EqualHeightContext } from './equal-height-context';
@@ -17,7 +19,7 @@ interface Props {
     disable?: boolean;
 }
 
-export default function EqualHeightElement(props: Props) {
+const EqualHeightElement = memo((props: Props) => {
     const {
         children = '',
         name,
@@ -79,7 +81,7 @@ export default function EqualHeightElement(props: Props) {
     }, [update, disable, placeholder]);
 
     // Set sizes on elements in DOM
-    useEffect((): void => {
+    useMemo((): void => {
         if (disable) {return;}
 
         const elementIndex: number = sizes.findIndex((e) => e.name === name);
@@ -112,4 +114,6 @@ export default function EqualHeightElement(props: Props) {
             )}
         </>
     );
-}
+});
+
+export default EqualHeightElement;

@@ -7,7 +7,7 @@ npm i react-equal-height
 ```
 
 **WARNING**
->Version 1.0.0 has deep changes which making the configuration from the old version incompatible.
+>Version >= 1.0.0 has deep changes which making the configuration from the old version incompatible.
 
 ## Usage
 ```tsx

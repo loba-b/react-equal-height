@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useCallback, useEffect, useState, useMemo, memo} from 'react';
 import { EqualHeightProvider } from './equal-height-context';
 
 interface Props {
@@ -32,7 +32,7 @@ export const defaults = {
     timeout: 200
 };
 
-export default function EqualHeight(props: Props) {
+const EqualHeight = memo((props: Props) => {
     const {
         children,
         timeout = defaults.timeout,
@@ -47,7 +47,7 @@ export default function EqualHeight(props: Props) {
     const [originalChildrenCount, setOriginalChildrenCount] = useState<StatesProps["originalChildrenCount"]>(defaults.originalChildrenCount);
     const [childrenCount, setChildrenCount] = useState<StatesProps["childrenCount"]>(defaults.childrenCount);
 
-    const handleUpdate = () => setUpdate(value => !value);
+    const handleUpdate = useCallback(() => setUpdate(value => !value), []);
 
     // Observe [resize, orientationchange] event
     useEffect(() => {
@@ -74,14 +74,14 @@ export default function EqualHeight(props: Props) {
 
     // Force calculate heights
     // Force calculate height when children count changed
-    useEffect(() => {
+    useMemo(() => {
         handleUpdate();
     }, [forceUpdate, originalChildrenCount]);
 
     // Choose only highest heights when all children calculated
     // Set right sizes
     // Reset temp values
-    useEffect(() => {
+    useMemo(() => {
         // statement (<= instead ===) in case when new children will be add
         if (originalChildrenCount <= childrenCount) {
             let filteredSizes: SizesProps[] = [];
@@ -126,4 +126,6 @@ export default function EqualHeight(props: Props) {
             {children}
         </EqualHeightProvider>
     );
-}
+});
+
+export default EqualHeight;

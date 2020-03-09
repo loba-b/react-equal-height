@@ -1,6 +1,6 @@
 {
   "name": "react-equal-height",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Compares element heights and sets the highest (based on react-hooks)",
   "main": "dist/index.js",
   "types": "dist/lib/index.d.ts",
@@ -12,8 +12,6 @@
     "watch": "webpack --config webpack.prod.js --watch",
     "server": "webpack-dev-server --port 8889 --config webpack.dev.js",
     "lint": "tslint -p tsconfig.json",
-    "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags",
     "postpublish": "npm publish --ignore-scripts --@loba-b:registry='https://npm.pkg.github.com'"
   },
   "repository": {
