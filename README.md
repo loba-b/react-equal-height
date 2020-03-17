@@ -154,6 +154,3 @@ Disable
 | ```build```   | building production version                       |
 | ```watch```   | building production version with watching changes |
 | ```server```  | local server for manual test                      |
-
-# TODO
-* Tests

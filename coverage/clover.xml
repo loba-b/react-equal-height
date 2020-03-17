@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1584443241565" clover="3.2.0">
+  <project timestamp="1584443241565" name="All files">
+    <metrics statements="80" coveredstatements="70" conditionals="69" coveredconditionals="64" methods="26" coveredmethods="20" elements="175" coveredelements="154" complexity="0" loc="80" ncloc="80" packages="1" files="4" classes="4"/>
+    <file name="equal-height-context.tsx" path="/home/loba/Dokumenty/WebstormWorkspace/OWN/REACT-EQUAL-HEIGHT/react-equal-height/lib/equal-height-context.tsx">
+      <metrics statements="8" coveredstatements="4" conditionals="22" coveredconditionals="22" methods="4" coveredmethods="0"/>
+      <line num="12" count="2" type="stmt"/>
+      <line num="14" count="0" type="stmt"/>
+      <line num="15" count="0" type="stmt"/>
+      <line num="16" count="0" type="stmt"/>
+      <line num="17" count="0" type="stmt"/>
+      <line num="22" count="2" type="stmt"/>
+      <line num="35" count="2" type="stmt"/>
+      <line num="36" count="2" type="stmt"/>
+    </file>
+    <file name="equal-height-element.tsx" path="/home/loba/Dokumenty/WebstormWorkspace/OWN/REACT-EQUAL-HEIGHT/react-equal-height/lib/equal-height-element.tsx">
+      <metrics statements="32" coveredstatements="31" conditionals="31" coveredconditionals="28" methods="11" coveredmethods="11"/>
+      <line num="22" count="2" type="stmt"/>
+      <line num="29" count="77" type="stmt"/>
+      <line num="38" count="77" type="stmt"/>
+      <line num="41" count="77" type="stmt"/>
+      <line num="44" count="77" type="stmt"/>
+      <line num="47" count="77" type="stmt"/>
+      <line num="48" count="42" type="cond" truecount="4" falsecount="0"/>
+      <line num="49" count="39" type="stmt"/>
+      <line num="50" count="39" type="stmt"/>
+      <line num="51" count="39" type="stmt"/>
+      <line num="52" count="39" type="stmt"/>
+      <line num="53" count="39" type="stmt"/>
+      <line num="54" count="39" type="stmt"/>
+      <line num="60" count="39" type="cond" truecount="1" falsecount="1"/>
+      <line num="61" count="39" type="stmt"/>
+      <line num="66" count="77" type="stmt"/>
+      <line num="67" count="18" type="cond" truecount="2" falsecount="0"/>
+      <line num="70" count="16" type="stmt"/>
+      <line num="71" count="16" type="stmt"/>
+      <line num="72" count="16" type="stmt"/>
+      <line num="77" count="77" type="stmt"/>
+      <line num="78" count="46" type="cond" truecount="2" falsecount="0"/>
+      <line num="80" count="42" type="stmt"/>
+      <line num="84" count="77" type="stmt"/>
+      <line num="85" count="50" type="cond" truecount="2" falsecount="0"/>
+      <line num="87" count="46" type="stmt"/>
+      <line num="89" count="46" type="cond" truecount="4" falsecount="1"/>
+      <line num="90" count="0" type="stmt"/>
+      <line num="95" count="77" type="stmt"/>
+      <line num="100" count="77" type="cond" truecount="4" falsecount="0"/>
+      <line num="101" count="4" type="stmt"/>
+      <line num="104" count="73" type="stmt"/>
+    </file>
+    <file name="equal-height.tsx" path="/home/loba/Dokumenty/WebstormWorkspace/OWN/REACT-EQUAL-HEIGHT/react-equal-height/lib/equal-height.tsx">
+      <metrics statements="40" coveredstatements="35" conditionals="16" coveredconditionals="14" methods="11" coveredmethods="9"/>
+      <line num="24" count="2" type="stmt"/>
+      <line num="35" count="2" type="stmt"/>
+      <line num="40" count="68" type="stmt"/>
+      <line num="43" count="68" type="stmt"/>
+      <line num="44" count="68" type="stmt"/>
+      <line num="45" count="68" type="stmt"/>
+      <line num="46" count="68" type="stmt"/>
+      <line num="47" count="68" type="stmt"/>
+      <line num="48" count="68" type="stmt"/>
+      <line num="50" count="68" type="stmt"/>
+      <line num="53" count="68" type="stmt"/>
+      <line num="56" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="58" count="8" type="cond" truecount="1" falsecount="1"/>
+      <line num="59" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="60" count="0" type="stmt"/>
+      <line num="61" count="0" type="stmt"/>
+      <line num="64" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="65" count="0" type="stmt"/>
+      <line num="66" count="0" type="stmt"/>
+      <line num="69" count="8" type="stmt"/>
+      <line num="70" count="8" type="stmt"/>
+      <line num="71" count="8" type="stmt"/>
+      <line num="78" count="68" type="stmt"/>
+      <line num="79" count="22" type="stmt"/>
+      <line num="85" count="68" type="stmt"/>
+      <line num="87" count="45" type="cond" truecount="2" falsecount="0"/>
+      <line num="88" count="25" type="stmt"/>
+      <line num="89" count="25" type="stmt"/>
+      <line num="90" count="38" type="stmt"/>
+      <line num="91" count="38" type="stmt"/>
+      <line num="92" count="38" type="stmt"/>
+      <line num="93" count="38" type="cond" truecount="2" falsecount="0"/>
+      <line num="94" count="22" type="stmt"/>
+      <line num="95" count="22" type="cond" truecount="1" falsecount="1"/>
+      <line num="96" count="0" type="stmt"/>
+      <line num="99" count="16" type="stmt"/>
+      <line num="105" count="25" type="stmt"/>
+      <line num="108" count="25" type="stmt"/>
+      <line num="109" count="25" type="stmt"/>
+      <line num="113" count="68" type="stmt"/>
+    </file>
+    <file name="index.tsx" path="/home/loba/Dokumenty/WebstormWorkspace/OWN/REACT-EQUAL-HEIGHT/react-equal-height/lib/index.tsx">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+    </file>
+  </project>
+</coverage>

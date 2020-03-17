@@ -56,14 +56,15 @@ const EqualHeight = memo((props: Props) => {
         const browser: boolean = typeof window !== "undefined" && typeof window.document !== "undefined";
 
         if (browser) {
-            window.addEventListener('resize', () => {
+            window.addEventListener('resize', timeout ? () => {
                 clearTimeout(resizeTimer);
                 resizeTimer = window.setTimeout(handleUpdate, timeout);
-            });
-            window.addEventListener('orientationchange', () => {
+            } : handleUpdate);
+
+            window.addEventListener('orientationchange', timeout ? () => {
                 clearTimeout(orientationChangeTimer);
                 orientationChangeTimer = window.setTimeout(handleUpdate, timeout);
-            });
+            } : handleUpdate);
 
             return () => {
                 window.removeEventListener('resize', handleUpdate);

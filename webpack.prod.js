@@ -7,6 +7,9 @@ module.exports = {
         libraryTarget: "commonjs2",
         filename: 'index.js'
     },
+    optimization: {
+        minimize: true
+    },
     module: {
         rules: [
             {
@@ -14,25 +17,7 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: [
-                                '@babel/preset-env',
-                                '@babel/preset-react',
-                                '@babel/preset-typescript'
-                            ],
-                            plugins: [
-                                '@babel/plugin-syntax-dynamic-import',
-                                [
-                                    '@babel/plugin-proposal-class-properties',
-                                    {
-                                        spec: true
-                                    }
-                                ],
-                                '@babel/plugin-transform-modules-commonjs',
-                                'css-modules-transform'
-                            ]
-                        }
+                        loader: 'babel-loader'
                     },
                     {
                         loader: 'ts-loader'

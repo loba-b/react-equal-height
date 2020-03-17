@@ -12,28 +12,13 @@ module.exports = {
         rules: [
             {
                 test: /\.(ts|js)x?$/,
-                exclude: /node_modules/,
+                exclude: [
+                    path.resolve(__dirname, "node_modules"),
+                    path.resolve(__dirname, "**/*.spec.js")
+                ],
                 use: [
                     {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: [
-                                '@babel/preset-env',
-                                '@babel/preset-react',
-                                '@babel/preset-typescript'
-                            ],
-                            plugins: [
-                                '@babel/plugin-syntax-dynamic-import',
-                                [
-                                    '@babel/plugin-proposal-class-properties',
-                                    {
-                                        spec: true
-                                    }
-                                ],
-                                '@babel/plugin-transform-modules-commonjs',
-                                'css-modules-transform'
-                            ]
-                        }
+                        loader: 'babel-loader'
                     },
                     {
                         loader: 'ts-loader'

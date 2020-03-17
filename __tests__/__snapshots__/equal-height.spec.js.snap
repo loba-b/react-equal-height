@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EqualHeight should render correctly 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "animationSpeed": 0.25,
+      "childrenCount": 0,
+      "forceUpdate": false,
+      "originalChildrenCount": 0,
+      "setChildrenCount": [Function],
+      "setForceUpdate": [Function],
+      "setOriginalChildrenCount": [Function],
+      "setTemporarySizes": [Function],
+      "sizes": Array [],
+      "temporarySizes": Array [],
+      "update": false,
+    }
+  }
+/>
+`;

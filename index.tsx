@@ -118,7 +118,7 @@ const App = () => {
             </div>
 
             <div className={styles.element}>
-                <EqualHeightElement name="Placeholder" placeholder={placeholder} />
+                <EqualHeightElement name="Placeholder" placeholder={placeholder}><p>aaa</p></EqualHeightElement>
             </div>
 
             <div className={styles.element}>
