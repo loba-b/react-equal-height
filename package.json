@@ -1,6 +1,6 @@
 {
   "name": "react-equal-height",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Compares element heights and sets the highest (based on react-hooks)",
   "main": "dist/index.js",
   "types": "dist/lib/index.d.ts",
