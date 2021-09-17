@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
+import '@testing-library/jest-dom'
 import "@testing-library/jest-dom/extend-expect";
-import { EqualHeight, EqualHeightConsumer, EqualHeightElement } from '../lib';
+import { EqualHeight, EqualHeightConsumer, EqualHeightElement } from '../';
 
 describe('EqualHeightElement', () => {
     test('should render correctly', () => {
@@ -16,7 +17,7 @@ describe('EqualHeightElement', () => {
         expect(container).toMatchSnapshot();
     });
 
-    test('should change tag from default DIV to custom SECTION', () => {
+    test('should change tag DIV into SECTION', () => {
         const { getByText} = render(
             <EqualHeight>
                 <EqualHeightElement name="ComponentName" tag={"section"}>

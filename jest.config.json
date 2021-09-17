@@ -11,5 +11,6 @@
   },
   "transform": {
     "^.+\\.(js|jsx|tsx)$": "babel-jest"
-  }
+  },
+  "testEnvironment": "jsdom"
 }

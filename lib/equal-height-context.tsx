@@ -30,7 +30,8 @@ const EqualHeightContext = React.createContext<StatesProps>({
     setTemporarySizes:          defaults && defaults.setTemporarySizes,
     setOriginalChildrenCount:   defaults && defaults.setOriginalChildrenCount,
     setChildrenCount:           defaults && defaults.setChildrenCount,
-    setForceUpdate:             defaults && defaults.setForceUpdate
+    setForceUpdate:             defaults && defaults.setForceUpdate,
+    updateOnChange:             defaults && defaults.updateOnChange
 });
 const EqualHeightProvider = EqualHeightContext.Provider;
 const EqualHeightConsumer = EqualHeightContext.Consumer;

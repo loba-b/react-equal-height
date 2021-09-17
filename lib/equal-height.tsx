@@ -1,10 +1,14 @@
-import React, {useCallback, useEffect, useState, useMemo, memo} from 'react';
+import React, { useCallback, useEffect, useState, useMemo, memo, ReactNode } from 'react';
 import { EqualHeightProvider } from './equal-height-context';
 
 interface Props {
-    children: React.ReactNode;
+    children: ReactNode;
+    /** Time to recalculate heights */
     timeout?: number;
+    /** Time of animation for height change (in milliseconds) */
     animationSpeed?: number;
+    /** It's a part of useEffect deps so in <b>updateOnChange</b> can be passed anything they allow */
+    updateOnChange?: unknown;
 }
 
 export interface SizesProps {
@@ -19,6 +23,7 @@ export interface StatesProps {
     forceUpdate: boolean;
     originalChildrenCount: number;
     childrenCount: number;
+    updateOnChange?: unknown;
 }
 
 export const defaults = {
@@ -29,14 +34,16 @@ export const defaults = {
     originalChildrenCount: 0,
     childrenCount: 0,
     animationSpeed: 0.25,
-    timeout: 200
+    timeout: 200,
+    updateOnChange: undefined
 };
 
 const EqualHeight = memo((props: Props) => {
     const {
         children,
         timeout = defaults.timeout,
-        animationSpeed = defaults.animationSpeed
+        animationSpeed = defaults.animationSpeed,
+        updateOnChange = defaults.updateOnChange
     } = props;
 
     // States
@@ -53,9 +60,12 @@ const EqualHeight = memo((props: Props) => {
     useEffect(() => {
         let resizeTimer: number;
         let orientationChangeTimer: number;
-        const browser: boolean = typeof window !== "undefined" && typeof window.document !== "undefined";
+        const browser: boolean = typeof window === 'object' && typeof window.document === 'object';
 
         if (browser) {
+            // const styles = document.createElement('style');
+            // styles.id = 'react-equal-height-styles';
+
             window.addEventListener('resize', timeout ? () => {
                 clearTimeout(resizeTimer);
                 resizeTimer = window.setTimeout(handleUpdate, timeout);
@@ -77,7 +87,7 @@ const EqualHeight = memo((props: Props) => {
     // Force calculate height when children count changed
     useMemo(() => {
         handleUpdate();
-    }, [forceUpdate, originalChildrenCount]);
+    }, [forceUpdate, originalChildrenCount, updateOnChange]);
 
     // Choose only highest heights when all children calculated
     // Set right sizes
@@ -122,9 +132,10 @@ const EqualHeight = memo((props: Props) => {
             setTemporarySizes,
             setOriginalChildrenCount,
             setChildrenCount,
-            setForceUpdate
+            setForceUpdate,
+            updateOnChange
         }}>
-            {children}
+            { children }
         </EqualHeightProvider>
     );
 });

@@ -4,12 +4,13 @@ import React, {
     useState,
     useContext,
     useMemo,
-    memo
+    memo,
+    ReactElement
 } from 'react';
 
 import { EqualHeightContext } from './equal-height-context';
 
-import styles from './equal-height.scss';
+import styles from './equal-height.modules.scss';
 
 interface Props {
     children?: React.ReactNode;
@@ -19,7 +20,7 @@ interface Props {
     disable?: boolean;
 }
 
-const EqualHeightElement = memo((props: Props) => {
+const EqualHeightElement = memo((props: Props): ReactElement | null => {
     const {
         children = '',
         name,
@@ -103,7 +104,7 @@ const EqualHeightElement = memo((props: Props) => {
 
     return (
         <>
-            {disable ? (
+            { disable ? (
                 children
             ) : (
                 React.createElement(tag, {

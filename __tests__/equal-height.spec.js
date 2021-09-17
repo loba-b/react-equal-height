@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { render, act, fireEvent } from '@testing-library/react';
 import "@testing-library/jest-dom/extend-expect";
-import { EqualHeightConsumer, EqualHeight, EqualHeightElement, EqualHeightContext } from '../lib';
+import { EqualHeightConsumer, EqualHeight, EqualHeightElement, EqualHeightContext } from '../';
 
 describe('EqualHeight', () => {
     test('should render correctly', () => {

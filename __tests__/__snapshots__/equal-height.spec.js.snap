@@ -15,6 +15,7 @@ exports[`EqualHeight should render correctly 1`] = `
       "sizes": Array [],
       "temporarySizes": Array [],
       "update": false,
+      "updateOnChange": undefined,
     }
   }
 />

@@ -1,20 +1,25 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
-    entry: './app.tsx',
+    entry: './clean/index.tsx',
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'test.js'
+        libraryTarget: 'commonjs2',
+        filename: 'clean/index.js'
     },
-    devtool: "source-map",
+    optimization: {
+        minimize: true
+    },
     module: {
         rules: [
             {
                 test: /\.(ts|js)x?$/,
                 exclude: [
                     path.resolve(__dirname, "node_modules"),
-                    path.resolve(__dirname, "**/*.spec.js")
+                    path.resolve(__dirname, "**/*.spec.js"),
+                    path.resolve(__dirname, "app.tsx")
                 ],
                 use: [
                     {
@@ -26,10 +31,9 @@ module.exports = {
                 ]
             },
             {
-                test: /\.scss$/,
-                exclude: /node_modules/,
+                test: /\.scss$/i,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
@@ -37,19 +41,24 @@ module.exports = {
                                 localIdentName: 'equal-height-JlocK',
                                 exportLocalsConvention: 'camelCase'
                             },
-                            importLoaders: 2
+                            importLoaders: 2,
+                            sourceMap: false
                         }
-                    }
-                ]
+                    }],
             }
         ]
+    },
+    externals: {
+        react: 'commonjs react',
+        'react-dom': 'commonjs react-dom'
     },
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx"]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: "index.html",
-        }),
+        new CssMinimizerPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'clean/main.css'
+        })
     ]
 };
