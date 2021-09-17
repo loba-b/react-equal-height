@@ -1,6 +1,6 @@
 {
   "name": "react-equal-height",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Compares element heights and sets the highest (based on react-hooks)",
   "scripts": {
     "build": "webpack --mode=production --config webpack.prod.js && webpack --mode=production --config webpack.prod-clean.js && cp README.md dist/README.md && rm -f ./dist/app.d.ts && cat ./package.json | grep -v '\"private\": ' > dist/package.json && npm pack ./dist",
@@ -10,14 +10,11 @@
     "test:watch": "jest --config ../jest.config.json --watch",
     "test:coverage": "jest --config ../jest.config.json --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/loba-b/react-equal-height.git"
-  },
+  "repository": "git://github.com/loba-b/react-equal-height.git",
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com/loba-b"
+    "registry": "https://npm.pkg.github.com/loba-b"
   },
-  "private": true,
+  "private": false,
   "keywords": [
     "react",
     "reactjs",
@@ -29,10 +26,6 @@
     "useEffect",
     "useContext"
   ],
-  "engines": {
-    "node": ">=12",
-    "react": ">=16"
-  },
   "author": "Bartosz Loba",
   "license": "MIT",
   "bugs": "https://github.com/loba-b/react-equal-height/issues",
@@ -68,7 +61,7 @@
     "jest": "^27.2.0",
     "mini-css-extract-plugin": "^2.3.0",
     "postcss": "^8.3.6",
-    "react": "^17.0.2",
+    "react": "^16.12.0",
     "react-dom": "^17.0.2",
     "style-loader": "^3.2.1",
     "ts-jest": "^27.0.5",
@@ -79,9 +72,5 @@
     "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.2.1"
-  },
-  "peerDependencies": {
-    "react": "^16.12.0",
-    "postcss": "^8.3.6"
   }
 }
