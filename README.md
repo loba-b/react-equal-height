@@ -15,8 +15,8 @@ npm i react-equal-height
 ## Library import
 | Library                       | Size      | Description                                                                                               |
 |-------------------------------|:----------|:----------------------------------------------------------------------------------------------------------|
-| `react-equal-height`          | 7.6 kB    | Library with <b>styles</b> that will be loaded on script startup to the `<style>` tag                     |
-| `react-equal-height/clean`    | 10,8 kB   | Library without <b>styles</b>. It can be useful for SSR or to remove overhead for script with loading styles<br /><br />Styles needs to be added:<ul><li>by itself (copy below styles to your project styles)</li><li><b>OR</b></li><li>imported from package `clean/main.css`</li></ul> |
+| `react-equal-height`          | 7.6kB    | Library with <b>styles</b> that will be loaded on script startup to the `<style>` tag                     |
+| `react-equal-height/clean`    | 10,8kB   | Library without <b>styles</b>. It can be useful for SSR or to remove overhead for script with loading styles<br /><br />Styles needs to be added:<ul><li>by itself (copy below styles to your project styles)</li><li><b>OR</b></li><li>by import `clean/main.css` from package</li></ul> |
 
 #### Styles from clean/main.css
 ````css
