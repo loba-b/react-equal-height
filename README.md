@@ -29,7 +29,7 @@ npm i react-equal-height
 
 ## Usage
 ```tsx
-import React, { useContext } from 'react';
+import React from 'react';
 import { EqualHeight, EqualHeightElement } from 'react-equal-height';
 
 const App = () => {
