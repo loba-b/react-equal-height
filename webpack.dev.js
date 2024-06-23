@@ -34,7 +34,7 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             modules: {
-                                localIdentName: 'equal-height-JlocK',
+                                // localIdentName: 'equal-height-JlocK',
                                 exportLocalsConvention: 'camelCase'
                             },
                             importLoaders: 2

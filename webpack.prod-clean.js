@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
     entry: './clean/index.tsx',
@@ -10,7 +11,16 @@ module.exports = {
         filename: 'clean/index.js'
     },
     optimization: {
-        minimize: true
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    output: {
+                        preamble: "'use client';"
+                    }
+                }
+            }),
+        ]
     },
     module: {
         rules: [

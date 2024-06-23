@@ -3,7 +3,7 @@
 * */
 
 import React, { useContext, useState } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { EqualHeightConsumer, EqualHeightContext } from './';
 import EqualHeight from './lib/equal-height';
 import EqualHeightElement from './lib/equal-height-element';
@@ -186,6 +186,6 @@ const App = () => {
     );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
-
+const container = document.getElementById('root');
+const root = createRoot(container!);
+root.render(<App />);

@@ -1,5 +1,6 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
     entry: './index.tsx',
@@ -9,7 +10,16 @@ module.exports = {
         filename: 'index.js'
     },
     optimization: {
-        minimize: true
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    output: {
+                        preamble: "'use client';"
+                    }
+                }
+            }),
+        ]
     },
     module: {
         rules: [

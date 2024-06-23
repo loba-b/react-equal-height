@@ -8,12 +8,6 @@ module.exports = api => {
         ],
         plugins: [
             '@babel/plugin-syntax-dynamic-import',
-            [
-                '@babel/plugin-proposal-class-properties',
-                {
-                    spec: true
-                }
-            ],
             '@babel/plugin-transform-modules-commonjs',
             'css-modules-transform',
             '@babel/plugin-transform-runtime'
