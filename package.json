@@ -1,6 +1,6 @@
 {
-  "name": "react-equal-height",
-  "version": "2.0.0",
+  "name": "@loba-b/react-equal-height",
+  "version": "2.0.1",
   "description": "A React library that automatically compares and sets the highest element height, including the ability to sort elements per row. Fully compatible with React Server Components, Next.js 14, and TypeScript.",
   "scripts": {
     "build": "rm -rf ./dist && webpack --mode=production --config ./webpack.config.js && webpack --mode=production --config ./webpack.config.js --env clean",

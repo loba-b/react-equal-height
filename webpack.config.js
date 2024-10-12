@@ -44,7 +44,8 @@ module.exports = function(env, argv) {
             new CopyWebpackPlugin({
                 patterns: [
                     { from: 'package.json', to: './' },
-                    { from: 'LICENSE', to: './' }
+                    { from: 'LICENSE', to: './' },
+                    { from: 'README.md', to: './' }
                 ],
             })
         )
