@@ -6,7 +6,7 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "target": "es5",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "allowJs": true,
     "outDir": "./dist",
     "strict": true,
@@ -14,10 +14,15 @@
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "declaration": true
-  },
+  },/*
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "src/playwright",
+    "src/app.tsx"
+  ]*/
+  "include": [
+    "src"
   ]
 }
 

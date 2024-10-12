@@ -9,7 +9,6 @@ module.exports = api => {
         plugins: [
             '@babel/plugin-syntax-dynamic-import',
             '@babel/plugin-transform-modules-commonjs',
-            'css-modules-transform',
             '@babel/plugin-transform-runtime'
         ]
     }

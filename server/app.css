@@ -1,0 +1,101 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    padding: 20px 200px;
+}
+
+.block {
+    padding: 20px;
+}
+
+.buttons {
+    display: block;
+}
+
+.element, .elements .equal-height-wrapper {
+    padding: 20px;
+    width: 30%;
+    outline: 2px solid #c5c5c5;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    margin: 1%;
+}
+
+/*
+ * `Base_4_1` tests the setup where `ReactEqualHolder` is manually wrapped around `ReactEqualElement`.
+ * This setup makes the top positioning originate from the `ReactEqualHolder` element itself,
+ * instead of the default behavior where `ReactEqualElement` passes this position as a prop to `ReactEqualHolder`.
+ */
+.element--no-space {
+    padding: 0;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+[class*='wrapper'] {
+    outline-width: 2px;
+    outline-style: solid;
+}
+
+[data-name*='Base_1'] {
+    outline-color: darkorange;
+}
+
+[data-name*='Base_2'] {
+    outline-color: darkviolet;
+}
+
+[data-name*='Base_3'] {
+    outline-color: deeppink;
+}
+
+[data-name*='Base_4'] {
+    outline-color: darkblue;
+}
+
+[data-name*='Base_5'] {
+    outline-color: darksalmon;
+}
+
+.innerElement {
+    outline: 2px solid green;
+    padding: 20px;
+}
+
+.equal-height-wrapper .innerElement {
+    margin: 20px;
+}
+
+.innerElement p {
+    margin: 0;
+}
+
+.innerElement p + p {
+    margin-top: 15px;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+}
+
+.equal-height-wrapper {
+    position: relative;
+}
+
+.equal-height-wrapper + .equal-height-wrapper,
+.innerElement + .equal-height-wrapper {
+    margin-top: 15px;
+}
+
+button {
+    margin: 10px;
+}
+
