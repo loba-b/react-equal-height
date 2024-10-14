@@ -12,9 +12,50 @@ import {
     getBasicComponentHeights
 } from "./helpers/get-components-heights";
 import { defaults, Props as EqualHeightProps } from "../../src/equal-height";
+import { ElementType } from "react";
 type AnimationSpeed = EqualHeightProps['animationSpeed'];
 
 test.describe('for "EqualHeight" component', () => {
+    test('only as provider', async ({mount, page}) => {
+        const component = await mount(
+            <BasicComponent />
+        );
+
+        const element = await getComponent(component, 'Base_1_1', 'WRAPPER').evaluate(
+            (e) => {
+                const element = e as HTMLElement;
+                return {
+                    tagName: element.tagName,
+                    id: element.id,
+                };
+            }
+        );
+
+        const foundRoot = element.tagName === 'DIV' && element.id === 'root'
+
+        expect(
+            foundRoot,
+            `Expected root element, not component tag`
+        ).toBeTruthy();
+    });
+
+    test('tag', async ({mount, page}) => {
+        const customTag: ElementType = 'main';
+
+        const component = await mount(
+            <BasicComponent equalHeight={ { as: customTag } }/>
+        );
+
+        const tag = await getComponent(component, 'Base_1_1', 'WRAPPER').evaluate(
+            (e) => (e as HTMLElement).tagName
+        );
+
+        expect(
+            tag,
+            `Expected custom tag`
+        ).toEqual(customTag.toUpperCase());
+    });
+
     test('id', async ({mount, page}) => {
         const id = 'custom_id';
 
@@ -201,7 +242,7 @@ test.describe('for "EqualHeight" component', () => {
 
 test.describe('for "EqualHeightHolder" component', () => {
     test('tag', async ({mount, page}) => {
-        const customTag = 'main';
+        const customTag: ElementType = 'main';
 
         const component = await mount(
             <BasicComponent equalHeightHolder={ {as: customTag} }/>

@@ -6,7 +6,10 @@ import {
     useState,
     useMemo,
     useId,
-    PropsWithChildren
+    PropsWithChildren,
+    ElementType,
+    createElement,
+    ComponentPropsWithoutRef
 } from 'react';
 import { EqualHeightProvider, EqualHeightContextProps } from './equal-height-context';
 import { ElementsProps } from "./equal-height-holder";
@@ -19,7 +22,7 @@ export interface HoldersInfoProps extends ElementsMaxSizesProps {
     id: string;
 }
 
-export interface Props {
+interface BaseProps {
     /**
      * Unique identifier for the group of elements.
      */
@@ -53,33 +56,42 @@ export interface Props {
     developerMode?: EqualHeightContextProps['developerMode'];
 }
 
+export type Props<T extends ElementType | undefined = undefined> = {
+    as?: T
+} & (T extends undefined ? BaseProps : BaseProps & ComponentPropsWithoutRef<Exclude<T, undefined>>)
+
 export const defaults:
     Omit<EqualHeightContextProps, 'setHoldersInfo'> &
     Pick<Props, 'timeout'> &
     Required<Pick<Props, 'updateOnChange'>> =
-{
-    equalRows: false,
-    animationSpeed: 0.25,
-    update: { value: false },
-    updateOnChange: [],
-    forceUpdate: () => {},
-    developerMode: false,
-    maxSizes: [],
-    holdersInfo: [],
-    timeout: 200
-};
+    {
+        equalRows: false,
+        animationSpeed: 0.25,
+        update: {value: false},
+        updateOnChange: [],
+        forceUpdate: () => {
+        },
+        developerMode: false,
+        maxSizes: [],
+        holdersInfo: [],
+        timeout: 200
+    };
 
-const EqualHeight = (props: PropsWithChildren<Props>) => {
-    const {
+const EqualHeight = <T extends ElementType | undefined = undefined>(
+    {
+        as,
         children,
         id = `context_${ useId() }`,
         timeout = defaults.timeout,
         animationSpeed = defaults.animationSpeed,
         equalRows = defaults.equalRows,
         updateOnChange = defaults.updateOnChange,
-        developerMode = defaults.developerMode
-    } = props;
+        developerMode = defaults.developerMode,
+        ...props
+    }: PropsWithChildren<Props<T>>
+) => {
 
+    const tag = as;
     const isBrowser = typeof window === 'object' && typeof window.document === 'object';
 
     /**
@@ -283,7 +295,11 @@ const EqualHeight = (props: PropsWithChildren<Props>) => {
             holdersInfo,
             setHoldersInfo
         } }>
-            { children }
+            { tag ? (
+                createElement(tag, {
+                    ...props
+                }, children)
+            ) : children }
         </EqualHeightProvider>
     );
 };

@@ -2,7 +2,7 @@ import { MountResult } from "@playwright/experimental-ct-react";
 import { Locator } from "@playwright/test";
 import { defaults } from "../../../src/equal-height";
 
-type DeepTypes = 'INNER' | 'ELEMENT' | 'HOLDER'
+type DeepTypes = 'INNER' | 'ELEMENT' | 'HOLDER' | 'WRAPPER'
 
 const getComponent = (component: MountResult, title: string, deep: DeepTypes = 'ELEMENT'): Locator => {
     const getComponent = component
@@ -15,6 +15,14 @@ const getComponent = (component: MountResult, title: string, deep: DeepTypes = '
 
     if (deep === 'HOLDER') {
         return getComponent
+            .locator('..')
+            .locator('..')
+            .locator('..');
+    }
+
+    if (deep === 'WRAPPER') {
+        return getComponent
+            .locator('..')
             .locator('..')
             .locator('..')
             .locator('..');

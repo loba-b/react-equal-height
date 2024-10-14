@@ -93,7 +93,8 @@ export default App;
 
 | Prop             |       Default        | Required  |         Type          | Description                                                                                        |
 |------------------|:--------------------:|:---------:|:---------------------:|:---------------------------------------------------------------------------------------------------|
-| `id`             |                      | **false** |    string / number    | Unique identifier for the group of elements.                                                       |
+| `id`             |   random generated   | **false** |    string / number    | Unique identifier for the group of elements.                                                       |
+| `as`             |                      | **false** |        string         | By default, no HTML tag will be generated. The component will be only  Provider.                   |
 | `timeout`        |       **200**        | **false** |        number         | time (in milliseconds) to recalculate heights                                                      |
 | `animationSpeed` | **0.25**<br>(second) | **false** | number / string`s/ms` | time of animation for height change (in milliseconds) <br /> (**0**: disable)                      |
 | `updateOnChange` |        **[]**        | **false** |       unknown[]       | it's a part of <b>useEffect</b> deps so in <b>updateOnChange</b> can be passed anything they allow |

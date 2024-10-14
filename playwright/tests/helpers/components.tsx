@@ -3,15 +3,15 @@ import { EqualHeight, EqualHeightElement, EqualHeightHolder } from "./styled-com
 import { Props as EqualHeightProps } from "../../../src/equal-height";
 import { Props as divProps } from "../../../src/equal-height-holder";
 import { Props as EqualHeightElementProps } from "../../../src/equal-height-element";
-import { useEqualHeightContext } from "../../../src/equal-height-context";
+import { useEqualHeightContext } from "../../../src";
 
-export interface Props<T extends ElementType = 'div', U extends ElementType = 'div'> {
+export interface Props<Z extends ElementType | undefined = undefined, T extends ElementType = 'div', U extends ElementType = 'div'> {
     buttons?: {
         load?: boolean
         disable?: boolean
         placeholder?: boolean
     };
-    equalHeight?: Partial<EqualHeightProps>;
+    equalHeight?: Partial<EqualHeightProps<Z>>;
     equalHeightHolder?: Pick<Partial<divProps<T>>, 'as'>;
     equalHeightElement?: Pick<Partial<EqualHeightElementProps<U>>, 'as'>;
 }
@@ -26,7 +26,7 @@ const ComponentWithContext = () => {
     );
 };
 
-const BasicComponent = <T extends ElementType = 'div', U extends ElementType = 'div'>(props: Props<T, U>) => {
+const BasicComponent = <Z extends ElementType, T extends ElementType = 'div', U extends ElementType = 'div'>(props: Props<Z, T, U>) => {
     const {
         developerMode,
         equalRows,
@@ -37,8 +37,9 @@ const BasicComponent = <T extends ElementType = 'div', U extends ElementType = '
     const [load, setLoad] = useState(props.buttons?.load || false);
     const [disable, setDisable] = useState(props.buttons?.disable || false);
     const [placeholder, setPlaceholder] = useState(props.buttons?.placeholder || false);
-
+    console.log(props.equalHeight);
     return (
+        // @ts-ignore
         <EqualHeight
             developerMode={ true }
             updateOnChange={ [updateOnChange] }
