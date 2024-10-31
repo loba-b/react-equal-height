@@ -19,7 +19,6 @@ import {
     useEqualHeightHolderContext
 } from './equal-height-context';
 import EqualHeightHolder from "./equal-height-holder";
-import { fixedForwardRef } from "./types";
 
 export type Props<T extends ElementType = 'div'> = {
     name: string;
@@ -28,15 +27,23 @@ export type Props<T extends ElementType = 'div'> = {
     disable?: boolean;
 } & ComponentPropsWithoutRef<T>;
 
-const EqualHeightElement = fixedForwardRef(<T extends ElementType = 'div'>(
-    {name, as, children, placeholder = false, disable = false, ...props}: PropsWithChildren<Props<T>>,
-    forwardedRef: Ref<HTMLElement>
+const EqualHeightElement = <T extends ElementType = 'div'>(
+    {
+        name,
+        as,
+        children,
+        placeholder = false,
+        disable = false,
+        ...props
+    }: PropsWithChildren<Props<T>> & {
+        forwardedRef?: Ref<HTMLElement>
+    }
 ) => {
     const id = `el_${ useId() }`;
     const tag = as || 'div';
     const ref = useRef<HTMLElement>(null);
 
-    useImperativeHandle(forwardedRef, () => ref.current as HTMLElement);
+    useImperativeHandle(props.forwardedRef, () => ref.current as HTMLElement);
 
     const {
         update,
@@ -198,20 +205,12 @@ const EqualHeightElement = fixedForwardRef(<T extends ElementType = 'div'>(
                 : animationSpeed
     };
 
-    if (!placeholder && !children) {
-        return null;
-    }
-
-    if (disable) {
-        return children;
-    }
-
     if (!isExistHolderContext) {
         return (
-            <EqualHeightHolder ref={ ref }>
+            <EqualHeightHolder forwardedRef={ ref }>
                 <EqualHeightElement
                     { ...props }
-                    ref={ ref }
+                    forwardedRef={ ref }
                     name={ name }
                     as={ tag }
                     placeholder={ placeholder }
@@ -220,6 +219,18 @@ const EqualHeightElement = fixedForwardRef(<T extends ElementType = 'div'>(
                     { children }
                 </EqualHeightElement>
             </EqualHeightHolder>
+        );
+    }
+
+    if (!placeholder && !children) {
+        return null;
+    }
+
+    if (disable) {
+        return (
+            <>
+                { children }
+            </>
         );
     }
 
@@ -241,6 +252,6 @@ const EqualHeightElement = fixedForwardRef(<T extends ElementType = 'div'>(
             </>
         ) : children))
     )
-});
+};
 
 export default EqualHeightElement;

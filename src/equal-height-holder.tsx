@@ -15,7 +15,6 @@ import {
 import { EqualHeightHolderProvider, useEqualHeightContext } from "./equal-height-context";
 import { Props as ElementProps } from './equal-height-element';
 import { ElementsMaxSizesProps } from "./equal-height";
-import { fixedForwardRef } from "./types";
 
 export interface ElementsProps extends Pick<ElementProps, 'name' | 'placeholder'> {
     id: string;
@@ -26,9 +25,14 @@ export type Props<T extends ElementType> = {
     as?: T;
 } & ComponentPropsWithoutRef<T>;
 
-const EqualHeightHolder = fixedForwardRef(<T extends ElementType = 'div'>(
-    {as, children, ...props}: PropsWithChildren<Props<T>>,
-    forwardedRef: Ref<HTMLElement>
+const EqualHeightHolder = <T extends ElementType = 'div'>(
+    {
+        as,
+        children,
+        ...props
+    }: PropsWithChildren<Props<T>> & {
+        forwardedRef?: Ref<HTMLElement>
+    }
 ) => {
     const id = `holder_${ useId() }`;
     const tag = as || 'div';
@@ -45,9 +49,9 @@ const EqualHeightHolder = fixedForwardRef(<T extends ElementType = 'div'>(
     /**
      * `EqualHeightHolder` is created by `EqualHeightElement`, so the ref is passed as a prop.
      */
-    if (forwardedRef) {
+    if (props.forwardedRef) {
         createdByChild = true;
-        ref = forwardedRef as RefObject<HTMLElement>;
+        ref = props.forwardedRef as RefObject<HTMLElement>;
     }
 
     const [position, setPosition] = useState<number | undefined>(undefined);
@@ -230,6 +234,6 @@ const EqualHeightHolder = fixedForwardRef(<T extends ElementType = 'div'>(
             ) }
         </EqualHeightHolderProvider>
     );
-});
+};
 
 export default EqualHeightHolder;
