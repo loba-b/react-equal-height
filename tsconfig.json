@@ -1,29 +1,19 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "removeComments": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "target": "es5",
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "outDir": "./dist",
-    "strict": true,
-    "sourceMap": true,
-    "skipLibCheck": true,
-    "noUnusedLocals": true,
-    "declaration": true
-  },/*
-  "exclude": [
-    "node_modules",
-    "dist",
-    "src/playwright",
-    "src/app.tsx"
-  ]*/
-  "include": [
-    "src"
-  ]
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "removeComments": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "target": "es5",
+        "jsx": "react-jsx",
+        "allowJs": true,
+        "outDir": "dist",
+        "strict": true,
+        "sourceMap": true,
+        "skipLibCheck": true,
+        "noUnusedLocals": true,
+        "declaration": true
+    },
+    "include": ["src"]
 }
-
-

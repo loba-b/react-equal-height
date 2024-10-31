@@ -1,30 +1,28 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const TerserPlugin = require("terser-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = function(env, argv) {
+module.exports = function (env, argv) {
     let clean = argv.env.clean;
     let entryFile, outputPath;
 
-    const plugins = [
-        new CleanWebpackPlugin()
-    ];
-    const cssLoaderConfig =  {
+    const plugins = [new CleanWebpackPlugin()];
+    const cssLoaderConfig = {
         loader: 'css-loader',
         options: {
-            sourceMap: false
-        }
+            sourceMap: false,
+        },
     };
 
     if (env.WEBPACK_SERVE) {
         plugins.push(
             new HtmlWebpackPlugin({
-                template: './server/index.html'
-            })
-        )
+                template: './server/index.html',
+            }),
+        );
     }
 
     if (clean) {
@@ -34,10 +32,10 @@ module.exports = function(env, argv) {
         plugins.push(
             new MiniCssExtractPlugin({
                 filename: 'main.css',
-            })
+            }),
         );
     } else {
-        entryFile = path.resolve(__dirname, '/src/index.tsx')
+        entryFile = path.resolve(__dirname, '/src/index.tsx');
         outputPath = path.resolve(__dirname, './dist');
 
         plugins.push(
@@ -45,16 +43,16 @@ module.exports = function(env, argv) {
                 patterns: [
                     { from: 'package.json', to: './' },
                     { from: 'LICENSE', to: './' },
-                    { from: 'README.md', to: './' }
+                    { from: 'README.md', to: './' },
                 ],
-            })
-        )
+            }),
+        );
     }
 
     return {
         mode: argv.mode,
         entry: env.WEBPACK_SERVE ? './server/app.tsx' : entryFile,
-        target: "web",
+        target: 'web',
         output: {
             path: outputPath,
             library: 'react-equal-height',
@@ -62,7 +60,7 @@ module.exports = function(env, argv) {
             filename: 'index.js',
             umdNamedDefine: true,
             clean: true,
-            globalObject: "this"
+            globalObject: 'this',
         },
         optimization: {
             minimize: true,
@@ -71,42 +69,47 @@ module.exports = function(env, argv) {
                     terserOptions: {
                         output: {
                             preamble: "'use client';",
-                            comments: false
-                        }
+                            comments: false,
+                        },
                     },
-                    extractComments: false
+                    extractComments: {
+                        condition: /^\**!|@preserve|@license|@cc_on/i,
+                        /*banner: () => {
+                            return `@license MIT, @author: Bartosz Loba`;
+                        },*/
+                    },
                 }),
-            ]
+            ],
         },
         devtool: argv.mode !== 'production' ? 'source-map' : false,
         resolve: {
-            extensions: ['.js', '.jsx', '.ts', '.tsx']
+            extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
         module: {
             rules: [
                 {
                     test: /\.tsx?$/,
-                    use: 'ts-loader'
+                    use: 'ts-loader',
                 },
                 {
                     test: /\.css$/,
                     use: clean
                         ? [MiniCssExtractPlugin.loader, cssLoaderConfig]
-                        : ['style-loader', cssLoaderConfig]
+                        : ['style-loader', cssLoaderConfig],
                 },
-            ]
+            ],
         },
-        ...!env.WEBPACK_SERVE && {
+        ...(!env.WEBPACK_SERVE && {
             externals: {
-                'react': 'react',
-                'react-dom': 'react-dom'
-            }
-        },
+                react: 'react',
+                'react-dom': 'react-dom',
+            },
+        }),
         plugins,
         devServer: {
             static: './server',
             port: 8889,
-            hot: true
+            hot: true,
         },
     };
-}
+};
