@@ -199,7 +199,7 @@ test.describe('for "EqualHeight" component', () => {
         });
 
         test('tolerates difference in position', async ({mount, page}) => {
-            const tolerance = 5;
+            const tolerance = 9;
             const toleranceFailure = tolerance + 1;
 
             const component = await mount(
