@@ -3,18 +3,23 @@
 Manages a dynamic collection of UI elements, enabling efficient tracking, updating, and synchronization of their maximum
 heights. It supports operations like adding, removing, and updating elements within the collection. Additionally, the
 application allows grouping elements by rows, making it ideal for complex interfaces where elements' sizes and positions
-need to be consistently managed and adjusted in real-time.<br><br>
+need to be consistently managed and adjusted in real-time.<br>Protected by the 'use client' directive, ensuring
+compatibility with React Server Components and Next.js.<br><br>
 <b>Long story short:</b> Compares heights of elements and sets the highest.
 
 ## Installation
 
-```
+```bash
 npm i react-equal-height
 ```
 
+> **Note:** requires `react@18.0.0` or newer.<br>
+> For older React versions, use `react-equal-height@1.3.1` (without `equalRows` functionality).
+
 **What's new in version 2**
 
-> New `equalRows` option. Checks other elements within the same row and sets the highest height value only for elements within that specific row.<br>
+> New `equalRows` option. Checks other elements within the same row and sets the highest height value only for elements
+> within that specific row.<br>
 
 > New `<EqualHeightHolder>` component. A helper for the new `equalRows` option
 
@@ -22,14 +27,14 @@ npm i react-equal-height
 
 > Minimal changes are required, primarily to props:
 >
-> -   The `tag` prop has been replaced by `as` in `EqualHeightElement`
-> -   The `updateOnChange` prop now only accepts an array based on `DependencyList`
-> -   The class name `equal-height-JlocK` has been updated to `equal-height-wrapper`
+> - The `tag` prop has been replaced by `as` in `EqualHeightElement`
+> - The `updateOnChange` prop now only accepts an array based on `DependencyList`
+> - The class name `equal-height-JlocK` has been updated to `equal-height-wrapper`
 
 ## Library import
 
 | Library                    | Size    | Description                                                                                                                                                                                                                                                                               |
-| -------------------------- |:--------| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------------------|:--------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `react-equal-height`       | 17,6 kB | Library with <b>styles</b> that will be loaded startup to the `<style>` tag                                                                                                                                                                                                               |
 | `react-equal-height/clean` | 13,6 kB | Library without <b>styles</b>. It can be useful for SSR or to remove overhead for script with loading styles<br /><br />Styles needs to be added:<ul><li>by itself (copy below styles to your project styles)</li><li><b>OR</b></li><li>by import `clean/main.css` from package</li></ul> |
 
@@ -45,24 +50,24 @@ npm i react-equal-height
 
 ## Components
 
--   **EqualHeight** - container holding all elements subject to height synchronization
--   **EqualHeightHolder** - groups elements into rows to facilitate row-wise height alignment
--   **EqualHeightElement** - represents each individual element whose height will be calculated
--   **EqualHeightContext** - library context
+- **EqualHeight** - container holding all elements subject to height synchronization
+- **EqualHeightHolder** - groups elements into rows to facilitate row-wise height alignment
+- **EqualHeightElement** - represents each individual element whose height will be calculated
+- **EqualHeightContext** - library context
 
 ## Automatic height recalculation triggers
 
--   adding an element
--   removing an element
--   updating an element
--   resizing the window or container
--   dynamically moving elements
+- adding an element
+- removing an element
+- updating an element
+- resizing the window or container
+- dynamically moving elements
 
 ## Usage
 
 ```tsx
 import React from 'react';
-import { EqualHeight, EqualHeightElement } from 'react-equal-height';
+import {EqualHeight, EqualHeightElement} from 'react-equal-height';
 
 const App = () => {
     return (
@@ -99,7 +104,7 @@ export default App;
 ### EqualHeight
 
 | Prop             |       Default        | Required  |         Type          | Description                                                                                        |
-| ---------------- | :------------------: | :-------: | :-------------------: | :------------------------------------------------------------------------------------------------- |
+|------------------|:--------------------:|:---------:|:---------------------:|:---------------------------------------------------------------------------------------------------|
 | `id`             |   random generated   | **false** |        string         | Unique identifier for the group of elements.                                                       |
 | `as`             |                      | **false** |        string         | By default, no HTML tag will be generated. The component will be only Provider.                    |
 | `timeout`        |       **200**        | **false** |        number         | time (in milliseconds) to recalculate heights                                                      |
@@ -108,8 +113,10 @@ export default App;
 | `equalRows`\*    |      **false**       | **false** |   boolean / number    | enables grouping elements by rows and accepts a number as the alignment tolerance in pixels.       |
 | `developerMode`  |      **false**       | **false** |   boolean / `DEEP`    | enables additional logging and warnings useful for development and debugging                       |
 
-> The `equalRows` option checks if elements are aligned at the same height relative to the viewport, using the `getBoundingClientRect` method.
-> By default, the height for each element is calculated from the `EqualHeightElement`. However, if an element is wrapped in an `EqualHeightHolder`,
+> The `equalRows` option checks if elements are aligned at the same height relative to the viewport, using the
+`getBoundingClientRect` method.
+> By default, the height for each element is calculated from the `EqualHeightElement`. However, if an element is wrapped
+> in an `EqualHeightHolder`,
 > its height will instead be calculated from the `EqualHeightHolder`.
 >
 > Keep in mind that if a single row contains a mix of elements with and without `EqualHeightHolder`,
@@ -121,13 +128,13 @@ export default App;
 ### EqualHeightHolder
 
 | Prop | Default | Required  |  Type  | Description |
-| ---- | :-----: | :-------: | :----: | :---------- |
+|------|:-------:|:---------:|:------:|:------------|
 | `as` |         | **false** | string | type of tag |
 
 ### EqualHeightElement
 
 | Prop          |  Default  | Required  |  Type   | Description                                                |
-| ------------- | :-------: | :-------: | :-----: | :--------------------------------------------------------- |
+|---------------|:---------:|:---------:|:-------:|:-----------------------------------------------------------|
 | `name`        |           | **true**  | string  | all heights of elements with the same name are comparing   |
 | `as`          |  **div**  | **false** | string  | type of tag                                                |
 | `placeholder` | **false** | **false** | boolean | to keeping height in place where element not exist         |
@@ -136,7 +143,7 @@ export default App;
 ### Custom event (experimental)
 
 | Event Name    | Payload                                                                                                                              | Description                                                                                                                                           |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------|--------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `EqualHeight` | <pre>{<br> "id": string;<br> "elements": Array<{<br> "name": string;<br> "height": number;<br> "position": number;<br> }><br>}</pre> | Dispatches when height recalculation occurs. `id` helps distinguish between groups of elements, and `elements` contains the maximum heights to align. |
 
 ## More usage example
@@ -187,7 +194,7 @@ export default App;
 
 ```tsx
 import React from 'react';
-import { EqualHeight, EqualHeightElement } from 'react-equal-height';
+import {EqualHeight, EqualHeightElement} from 'react-equal-height';
 
 const App = () => {
     const [updateOnChange, setUpdateOnChange] = useState(false);
@@ -223,7 +230,7 @@ export default App;
 
 ```tsx
 import React from 'react';
-import { EqualHeight, EqualHeightElement } from 'react-equal-height';
+import {EqualHeight, EqualHeightElement} from 'react-equal-height';
 
 const App = () => {
     const [updateOnChange, setUpdateOnChange] = useState(false);
@@ -258,7 +265,7 @@ export default App;
 ### Update by 'forceUpdate' method
 
 ```tsx
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import {
     EqualHeight,
     EqualHeightContext,
@@ -275,9 +282,9 @@ const ComponentWithContext = () => {
 const App = () => {
     return (
         <EqualHeight>
-            <ComponentWithContext />
+            <ComponentWithContext/>
             <EqualHeightElement name="Name">
-                <LoadImage />
+                <LoadImage/>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Proin nibh augue, suscipit a, scelerisque sed, lacinia in,
@@ -340,6 +347,7 @@ export default App;
 
 `equalRows: true` and `EqualHeightHolder` component used
 
-> All elements in the same group and row are equal. Thanks to the EqualHeightHolder, we were able to treat `Base_2_1`, `Base_1_1`, and `Base_1_2` as elements in the same row.
+> All elements in the same group and row are equal. Thanks to the EqualHeightHolder, we were able to treat `Base_2_1`,
+`Base_1_1`, and `Base_1_2` as elements in the same row.
 
 ![Holder example](doc/holder--rows.gif)
