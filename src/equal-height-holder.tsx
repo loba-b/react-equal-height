@@ -31,7 +31,7 @@ const EqualHeightHolder = <T extends ElementType = 'div'>(
         children,
         ...props
     }: PropsWithChildren<Props<T>> & {
-        forwardedRef?: Ref<HTMLElement>
+        forwardedref?: Ref<HTMLElement>
     }
 ) => {
     const id = `holder_${ useId() }`;
@@ -49,9 +49,9 @@ const EqualHeightHolder = <T extends ElementType = 'div'>(
     /**
      * `EqualHeightHolder` is created by `EqualHeightElement`, so the ref is passed as a prop.
      */
-    if (props.forwardedRef) {
+    if (props.forwardedref) {
         createdByChild = true;
-        ref = props.forwardedRef as RefObject<HTMLElement>;
+        ref = props.forwardedref as RefObject<HTMLElement>;
     }
 
     const [position, setPosition] = useState<number | undefined>(undefined);

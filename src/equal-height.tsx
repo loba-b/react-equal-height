@@ -186,7 +186,7 @@ const EqualHeight = <T extends ElementType | undefined = undefined>(
 
             window.addEventListener('orientationchange', timeout ? () => {
                 clearTimeout(orientationChangeTimer);
-                resizeTimer = window.setTimeout(() => {
+                orientationChangeTimer = window.setTimeout(() => {
                     handleUpdate();
                     updateOnScrollbar();
                 }, timeout);

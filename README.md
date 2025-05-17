@@ -13,9 +13,6 @@ compatibility with React Server Components and Next.js.<br><br>
 npm i react-equal-height
 ```
 
-> **Note:** requires `react@18.0.0` or newer.<br>
-> For older React versions, use `react-equal-height@1.3.1` (without `equalRows` functionality).
-
 **What's new in version 2**
 
 > New `equalRows` option. Checks other elements within the same row and sets the highest height value only for elements
@@ -30,6 +27,11 @@ npm i react-equal-height
 > - The `tag` prop has been replaced by `as` in `EqualHeightElement`
 > - The `updateOnChange` prop now only accepts an array based on `DependencyList`
 > - The class name `equal-height-JlocK` has been updated to `equal-height-wrapper`
+
+## Compatibility
+- React 19+: use version `^2.19.0`
+- React 18: use `react-equal-height@react-18` (== `2.18.0`)
+- React <18: use `react-equal-height@1.3.1` (without `equalRows` functionality)
 
 ## Library import
 

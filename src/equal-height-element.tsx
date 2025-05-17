@@ -36,14 +36,14 @@ const EqualHeightElement = <T extends ElementType = 'div'>(
         disable = false,
         ...props
     }: PropsWithChildren<Props<T>> & {
-        forwardedRef?: Ref<HTMLElement>
+        forwardedref?: Ref<HTMLElement>
     }
 ) => {
     const id = `el_${ useId() }`;
     const tag = as || 'div';
     const ref = useRef<HTMLElement>(null);
 
-    useImperativeHandle(props.forwardedRef, () => ref.current as HTMLElement);
+    useImperativeHandle(props.forwardedref, () => ref.current as HTMLElement);
 
     const {
         update,
@@ -207,10 +207,10 @@ const EqualHeightElement = <T extends ElementType = 'div'>(
 
     if (!isExistHolderContext) {
         return (
-            <EqualHeightHolder forwardedRef={ ref }>
+            <EqualHeightHolder forwardedref={ ref }>
                 <EqualHeightElement
                     { ...props }
-                    forwardedRef={ ref }
+                    forwardedref={ ref }
                     name={ name }
                     as={ tag }
                     placeholder={ placeholder }
